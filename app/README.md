@@ -1,13 +1,14 @@
 # API Extensão Google Chrome
+Aplicação/API inicialmente desenvolvida por @RenanTescaro: https://github.com/renantescaro/api-extensao-navegador
 
-#### Extensão 
+## Extensão 
 https://github.com/renantescaro/extensao-chrome-wapschool
 
-###### URLs: 
+### URLs: 
 - localhost/?gerar-pessoa
 - localhost/?gerar-empresa
 - localhost/?gerar-produto
 
-###### Configurações
+### Configurações
 - [Configuração Banco de Dados](Configuracoes.php)
 - [Script do Banco](tabelas.sql)
