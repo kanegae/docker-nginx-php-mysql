@@ -1,0 +1,73 @@
+version: '3.7'
+services:
+    nginx:
+        build:
+            dockerfile: ./docker/meu-nginx.dockerfile
+            context: .
+        image: kanegae/nginx
+        container_name: nginx
+        ports:
+            - "80:80"
+        networks:
+            - minha-network
+        depends_on: 
+            - "php1"
+            - "php2"
+            - "php3"
+    
+    mysql:
+        build:
+            dockerfile: ./docker/meu-mysql.dockerfile
+            context: .
+        image: kanegae/mysql
+        #image: mysql
+        container_name: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: "minha-senha"
+            MYSQL_DATABASE: "meu-bd"
+        networks:
+            - minha-network
+    
+    #adminer:
+    #    image: adminer
+    #    ports:
+    #        - 8080:8080
+    #    networks:
+    #        - minha-network
+
+    php1:
+        build:
+            dockerfile: ./docker/meu-php.dockerfile
+            context: .
+        image: kanegae/php
+        container_name: php1
+        networks:
+            - minha-network
+        depends_on:
+            - "mysql"
+
+    php2:
+        build:
+            dockerfile: ./docker/meu-php.dockerfile
+            context: .
+        image: kanegae/php
+        container_name: php2
+        networks:
+            - minha-network
+        depends_on:
+            - "mysql"
+
+    php3:
+        build:
+            dockerfile: ./docker/meu-php.dockerfile
+            context: .
+        image: kanegae/php
+        container_name: php3
+        networks:
+            - minha-network
+        depends_on:
+            - "mysql"
+
+networks:
+    minha-network:
+        driver: bridge
